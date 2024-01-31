@@ -23,6 +23,7 @@ import javax.crypto.Cipher
 import javax.crypto.SecretKey
 import javax.crypto.KeyGenerator
 
+// PhoneActivity for file encryption, hashing, and communication with an FTP server
 class PhoneActivity : AppCompatActivity() {
     private val PICK_FILE_REQUEST_CODE = 1
     private val selectedFiles: MutableList<Uri> = mutableListOf()
@@ -44,8 +45,8 @@ class PhoneActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.phone)
 
-        val hme3 = findViewById<Button>(R.id.hme3)
-        hme3.setOnClickListener {
+        val homeButton = findViewById<Button>(R.id.hme3)
+        homeButton.setOnClickListener {
             val intent5 = Intent(this, MainActivity::class.java)
             startActivity(intent5)
         }

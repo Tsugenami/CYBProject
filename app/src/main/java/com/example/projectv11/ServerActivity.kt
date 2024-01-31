@@ -10,9 +10,9 @@ import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
-import java.security.MessageDigest
 import java.util.concurrent.TimeUnit
 
+// ServerActivity for interacting with the server endpoints
 class ServerActivity : AppCompatActivity() {
     private val FILES_ENDPOINT = "https://your-endpoint-url/get_files"
     private val REQUEST_ENDPOINT = "https://your-endpoint-url/send_request"
@@ -25,16 +25,18 @@ class ServerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.server)
 
-        val hme1 = findViewById<Button>(R.id.home1)
-        hme1.setOnClickListener {
+        val homeButton = findViewById<Button>(R.id.home1)
+        homeButton.setOnClickListener {
             val intent5 = Intent(this, MainActivity::class.java)
             startActivity(intent5)
         }
 
+        // Initialize UI elements
         messageEditText = findViewById(R.id.messageEditText)
         filesTextView = findViewById(R.id.filesTextView)
         errorTextView = findViewById(R.id.errorTextView)
 
+        // Set click listeners for buttons
         val sendMessageButton: Button = findViewById(R.id.sendMessageButton)
         val requestButton: Button = findViewById(R.id.requestButton)
 
@@ -51,6 +53,7 @@ class ServerActivity : AppCompatActivity() {
         }
     }
 
+    // Function to get the list of files from the endpoint
     private fun getFilesFromEndpoint(message: String) {
         val client = OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -80,6 +83,7 @@ class ServerActivity : AppCompatActivity() {
         })
     }
 
+    // Function to send selected files to the endpoint
     private fun sendFilesToEndpoint(selectedFiles: String) {
         val client = OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -112,6 +116,7 @@ class ServerActivity : AppCompatActivity() {
         })
     }
 
+    // Function to handle the server response after sending files
     private fun handleServerResponse(serverResponse: String?) {
         // Assuming the server responds with "true" or "false"
         if (serverResponse == "true") {
@@ -123,6 +128,7 @@ class ServerActivity : AppCompatActivity() {
         }
     }
 
+    // Function to save files to the app's local directory
     private fun saveFilesToLocalDirectory() {
         // Implement logic to save files to the app's files directory
         // ...
@@ -133,6 +139,7 @@ class ServerActivity : AppCompatActivity() {
         }
     }
 
+    // Function to display error messages in the UI
     private fun showError(errorMessage: String) {
         runOnUiThread {
             errorTextView.text = errorMessage
