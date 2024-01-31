@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var welcomeText: TextView
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://your-api-base-url/") // Replace with your actual API base URL
+        .baseUrl("https://your-api-base-url/") //
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
                         // Login successful
                         welcomeText.text = "Login Successful, please continue."
 
-                        // Simulate extracting a session token from the server response
                         val sessionToken = loginResponse.sessionToken ?: ""
 
                         // Delay for usability
